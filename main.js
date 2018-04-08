@@ -7,8 +7,11 @@
         const section = sections[i].addEventListener('click', function(){
             var index = i;
             toogle(this, sections);
-            showContent(this, content);
-            reorderElements(container, content);
+            showContent(this, content, function(){
+                setTimeout(function(){
+                    reorderElements(container, content)
+                }, 500);
+            });
         });
     }
 
@@ -32,13 +35,15 @@
         }
     }
 
-    function showContent(item, content) {
+    function showContent(item, content, callback) {
+        console.log('ShowContent');
         changeValue(item, content);
         if (content.className === 'content hide') {
             content.classList.remove('hide');    
         } else {
             content.classList.add('hide');
         }
+        callback();
     }
 
     function changeValue(item, content) {
@@ -46,6 +51,19 @@
         content.querySelector('#value').innerHTML = value;
     }
 
-    
+    function reorderElements(parent, lastNode) {
+        var hideElements = document.querySelectorAll('section.hide');
+        var cloneHideElements = hideElements;
+
+        for (let i = 0; i < hideElements.length; i++) {
+            const node = hideElements[i];
+            node.remove();
+        }
+
+        for (let i = 0; i < cloneHideElements.length; i++) {
+            const node = cloneHideElements[i];
+            parent.insertBefore(node, lastNode);
+        }
+    }
 
 }());
