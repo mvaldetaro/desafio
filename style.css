@@ -70,19 +70,19 @@ section > span,
     text-transform: uppercase;
 }
 
-section:nth-child(1) {
+section[data-value='a'] {
     background-color: #050c14;
 }
 
-section:nth-child(2) {
+section[data-value='b'] {
     background-color: #002d2c;
 }
 
-section:nth-child(3) {
+section[data-value='c'] {
     background-color: #0b2b04;
 }
 
-section:nth-child(4) {
+section[data-value='d'] {
     background-color: #1f042c;
 }
 
@@ -111,14 +111,8 @@ footer {
     transition: all .5s linear;
 }
 
-.show p,
-.show li,
-.hide p,
-.hide li {
-    display: none;
-}
-
 .hide {
+    transition: all .5s linear;
     height: 0;
 }
 
