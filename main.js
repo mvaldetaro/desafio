@@ -5,7 +5,6 @@
 
     for (let i = 0; i < sections.length; i++) {
         const section = sections[i].addEventListener('click', function(){
-            var index = i;
             toogle(this, sections);
             showContent(this, content, function(){
                 setTimeout(function(){
@@ -36,7 +35,6 @@
     }
 
     function showContent(item, content, callback) {
-        console.log('ShowContent');
         changeValue(item, content);
         if (content.className === 'content hide') {
             content.classList.remove('hide');    
@@ -65,5 +63,4 @@
             parent.insertBefore(node, lastNode);
         }
     }
-
 }());
